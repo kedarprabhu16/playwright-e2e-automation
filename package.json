@@ -1,0 +1,19 @@
+{
+  "name": "new-fw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "e2e:config": "node ./scripts/mk-configuration.js",
+    "e2e:test": "playwright test --config=./playwright.config.ts --project=test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.35.0"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
