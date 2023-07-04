@@ -10,10 +10,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.35.0"
-  },
   "dependencies": {
+    "monocart": "^1.1.1",
+    "playwright": "^1.35.1",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.35.1"
   }
 }

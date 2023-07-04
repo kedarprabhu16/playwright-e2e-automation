@@ -20,7 +20,34 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter:  [
+    ['list'],
+    ['monocart-reporter', {
+        name: "mono cart report",
+        outputFile: './test-report/report.html',
+        visitor: (data, metadata, collect) => {
+            // auto collect data from the comments
+            const parserOptions = {
+                // Indicate the mode the code should be parsed in.
+                // Can be one of "script", "module", or "unambiguous". Defaults to "script".
+                sourceType: 'module'
+
+                // enable typescript syntax.
+                // plugins: ['typescript']
+
+                // more https://babeljs.io/docs/babel-parser
+            };
+            const comments = collect.comments(parserOptions);
+            if (comments) {
+                // Append all collected comments data to report data
+                Object.assign(data, comments);
+            }
+        },
+        onEnd: async (reportData, capability) => {
+
+        }
+    }]
+],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
