@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "e2e:config": "node ./scripts/mk-configuration.js",
-    "e2e:test": "playwright test --config=./playwright.config.ts --project=test"
+    "e2e:test": "playwright test --config=./playwright.config.ts --project=test",
+    "github-action": "npx playwright test --config=github.config.ts"
   },
   "keywords": [],
   "author": "",
