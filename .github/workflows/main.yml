@@ -6,13 +6,20 @@
  jobs:
    e2e-tests:
      runs-on: windows-latest # or macos-latest, ubuntu-latest
+     strategy:
+      matrix:
+        node-version: [18.x]
      environment: cred
      steps:
        - uses: actions/checkout@v2
+       - name: Set up Node Js version as ${{ matrix.node-version }}
+         uses: actions/setup-node@v1
+         with:
+          node-version: ${{ matrix.node-version }}
 
        - uses: actions/setup-node@v1
 
-       #- uses: microsoft/playwright-github-action@v1
+       - uses: microsoft/playwright-github-action@v1
 
        - name: Install dependencies
          run: npm install
