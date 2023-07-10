@@ -3,12 +3,16 @@ import {FullConfig, FullResult, Reporter, Suite, TestCase, TestError, TestResult
 
 let totalTestCount: number;
 let totalSpecCount:number;
+let totalSpecTestCount:number;
+let totalStepCount:number;
 let currentTest = 1;
+let allTest:number;
 const colors = {
     FgRed : "\x1b[31m",
   FgGreen : "\x1b[32m",
   Reset : "\x1b[0m",
 }
+
 function testCount(): string {
     return `${currentTest}/${totalTestCount}`;
   }
@@ -26,13 +30,18 @@ export default class MyReporter implements Reporter{
         totalSpecCount =suite.suites[0].suites.length;
         for (let i=0;i<totalSpecCount;i++){
             console.log('Suite Title: '+suite.suites[0].suites[i].suites[0].title);
+            totalSpecTestCount=suite.suites[0].suites[i].suites[0].tests.length;
+            for(let j=0;j<totalSpecTestCount;j++){
+                console.log(`Test ${testCount()} Started: ${suite.suites[0].suites[i].suites[0].tests[j].title} `);
+                currentTest++;   
+            }     
+               
         }  
     };
 
-    onTestBegin(test: TestCase, result: TestResult): void{
-          console.log(`Test ${testCount()} Started: ${test.title} `);
-          currentTest++;  
-      };
+    // onTestBegin(test: TestCase, result: TestResult): void{
+    //     console.log(`Test ${testCount()}: ${test.title} `);
+    //   };
 
     onTestEnd(test: TestCase, result: TestResult): void{
         let status = getStatusColor(result.status);
@@ -47,14 +56,13 @@ export default class MyReporter implements Reporter{
     onStepBegin(test: TestCase, result: TestResult, step: TestStep): void{
 
     };
-  
+    
     onStepEnd(test: TestCase, result: TestResult, step: TestStep): void{
 
     };
 
     onError(error: TestError): void{
         console.log("On Error: "+ error.message);
-
     };
   
     onEnd(result: FullResult): void | Promise<void>{
