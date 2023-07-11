@@ -21,7 +21,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:  [
-   ['./customReport/myReporter.ts'],
+   //['./customReport/myReporter.ts'],
     ['monocart-reporter', {
         name: "mono cart report",
         outputFile: './test-report/report.html',
@@ -48,7 +48,7 @@ export default defineConfig({
     {
       name: 'test',
       testDir: './tests/',
-      retries: 1,
+      retries: 0,
       use: {
         headless: false,
         channel: 'chrome',
