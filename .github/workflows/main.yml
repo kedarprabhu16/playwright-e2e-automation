@@ -5,11 +5,10 @@
 
  jobs:
    e2e-tests:
-     runs-on: windows-latest # or macos-latest, ubuntu-latest
+     runs-on: ubuntu-latest # or macos-latest, windows-latest
      strategy:
       matrix:
         node-version: [18.x]
-     environment: cred
      steps:
        - uses: actions/checkout@v2
        - name: Set up Node Js version as ${{ matrix.node-version }}
