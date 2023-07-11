@@ -10,22 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
-    steps:
-       - uses: actions/checkout@v2
-       - name: Set up Node Js version as ${{ matrix.node-version }}
-         uses: actions/setup-node@v1
-         with:
-          node-version: ${{ matrix.node-version }}
-       - uses: actions/setup-node@v1
-       - uses: microsoft/playwright-github-action@v1
-       - name: Install dependencies
-         run: npm install
-       - name: Run tests
-         run: npm run github-action
-       - uses: actions/upload-artifact@v2
-         if: always()
-         with:
-          name: test-report
-          path: test-report/
-          retention-days: 30
+        node-version: [18.x] 
+    steps:  
+      - uses: actions/checkout@v2      
+      - name: Set up Node Js version as ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:  
+              node-version: ${{ matrix.node-version }}
+      - uses: actions/setup-node@v1
+      - uses: microsoft/playwright-github-action@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run github-action
