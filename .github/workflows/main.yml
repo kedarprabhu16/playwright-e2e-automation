@@ -9,6 +9,7 @@
      strategy:
       matrix:
         node-version: [18.x]
+     environment: cred
      steps:
        - uses: actions/checkout@v2
        - name: Set up Node Js version as ${{ matrix.node-version }}
