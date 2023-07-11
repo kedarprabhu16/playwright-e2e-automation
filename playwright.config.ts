@@ -50,7 +50,7 @@ export default defineConfig({
       testDir: './tests/',
       retries: 0,
       use: {
-        headless: false,
+        headless: true,
         channel: 'chrome',
       },
     },
