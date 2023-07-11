@@ -5,9 +5,10 @@ on:
   pull_request:
     branches: [main, master]
 jobs:
-   e2e-tests:
-     runs-on: ubuntu-latest
-     steps:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    environment: cred
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
